@@ -9,9 +9,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-      appBar: AppBar(title: const Text("Contoh Column Widget")),
+      appBar: AppBar(title: const Text("Contoh Row Widget")),
       // ignore: avoid_unnecessary_containers
-      body: Column(
+      body: Row(
         children: [
           Container(
             color: Colors.purpleAccent,
