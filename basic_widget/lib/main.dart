@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(title: const Text("Contoh Alignment")),
+          appBar: AppBar(title: const Text("Contoh Color")),
           // ignore: avoid_unnecessary_containers
           body: Container(
               margin: const EdgeInsets.all(100),
