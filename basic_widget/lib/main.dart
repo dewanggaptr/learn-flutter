@@ -12,12 +12,14 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(title: const Text("Contoh Alignment")),
           // ignore: avoid_unnecessary_containers
           body: Container(
-              alignment: Alignment.bottomCenter,
+              margin: const EdgeInsets.all(100),
+              height: 200,
+              width: 200,
+              alignment: Alignment.center,
+              color: Colors.amber[900],
               child: const Text(
                 'Semangat Belajar',
-                style: TextStyle(
-                  fontSize: 20,
-                ),
+                style: TextStyle(fontSize: 20, color: Colors.white),
               ))),
     );
   }
