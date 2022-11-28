@@ -9,16 +9,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(title: const Text("Contoh Margin")),
+          appBar: AppBar(title: const Text("Contoh Padding")),
           // ignore: avoid_unnecessary_containers
           body: Container(
-              margin: const EdgeInsets.all(133),
+              padding: const EdgeInsets.only(left: 20),
+              margin: const EdgeInsets.all(20),
               height: 99,
               width: 250,
               alignment: Alignment.topCenter,
-              color: Colors.blueGrey,
+              color: Colors.orange,
               child: const Text(
-                'Semangat Belajar Flutter',
+                'Ayo Belajar Flutter',
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ))),
     );
