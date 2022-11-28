@@ -9,19 +9,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-          appBar: AppBar(title: const Text("Contoh Padding")),
+          appBar: AppBar(title: const Text("Contoh Transform")),
           // ignore: avoid_unnecessary_containers
           body: Container(
-              padding: const EdgeInsets.only(left: 20),
-              margin: const EdgeInsets.all(20),
-              height: 99,
-              width: 250,
-              alignment: Alignment.topCenter,
-              color: Colors.orange,
-              child: const Text(
-                'Ayo Belajar Flutter',
-                style: TextStyle(fontSize: 20, color: Colors.white),
-              ))),
+            decoration: BoxDecoration(
+              image: const DecorationImage(
+                image: NetworkImage(
+                    'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                fit: BoxFit.fitHeight,
+              ),
+              border: Border.all(
+                color: Colors.black,
+                width: 8,
+              ),
+            ),
+            height: 200,
+            width: 300,
+            margin: const EdgeInsets.only(left: 30.0, right: 30.0, top: 30),
+            transform: Matrix4.rotationZ(-0.1),
+          )),
     );
   }
 }
