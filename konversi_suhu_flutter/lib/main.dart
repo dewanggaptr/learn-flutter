@@ -1,11 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:konversi_suhu_flutter/widgets/convert.dart';
+import 'package:konversi_suhu_flutter/widgets/input.dart';
+import 'package:konversi_suhu_flutter/widgets/result.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  //var changes
+  TextEditingController etInput = TextEditingController();
+
+  double inputUser = 0;
+  double kelvin = 0;
+  double reamur = 0;
+
+  @override
+  void konversiSuhu() {
+    setState(() {
+      inputUser = double.parse(etInput.text);
+      kelvin = inputUser + 273;
+      reamur = inputUser * (4 / 5);
+    });
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -20,58 +45,14 @@ class MyApp extends StatelessWidget {
           title: Text("Konverter Suhu"),
         ),
         body: Container(
-          margin: EdgeInsets.all(8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextFormField(
-                decoration:
-                    InputDecoration(labelText: 'Masukkan Suhu Dalam Celcius'),
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      const Text('Suhu dalam Kelvin'),
-                      SizedBox(height: 15),
-                      const Text(
-                        '150',
-                        style: TextStyle(fontSize: 50),
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text('Suhu dalam Reamur'),
-                      SizedBox(height: 15),
-                      Text(
-                        '200',
-                        style: TextStyle(fontSize: 50),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              ElevatedButton(
-                child: Text('Konversi Suhu'),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size.fromHeight(40),
-                  primary: Colors.blue,
-                  textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                      fontStyle: FontStyle.normal),
-                ),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Input(etInput: etInput),
+            Result(kelvin: kelvin, reamur: reamur),
+            Convert(konversiSuhu: konversiSuhu)
+          ],
+        )),
       ),
     );
   }
