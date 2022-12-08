@@ -16,18 +16,24 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   //var changes
-  TextEditingController etInput = TextEditingController();
+  final TextEditingController etInput = TextEditingController();
 
   double inputUser = 0;
-  double kelvin = 0;
-  double reamur = 0;
+
+  String newValue = "Kelvin";
+  double result = 0;
+
+  var listItem = ["Kelvin", "Reamur"];
 
   @override
   void konversiSuhu() {
     setState(() {
       inputUser = double.parse(etInput.text);
-      kelvin = inputUser + 273;
-      reamur = inputUser * (4 / 5);
+
+      if (newValue == "Kelvin")
+        result = inputUser + 273;
+      else
+        result = (4 / 5) * inputUser;
     });
   }
 
@@ -49,11 +55,29 @@ class _MyAppState extends State<MyApp> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Input(etInput: etInput),
-            Result(kelvin: kelvin, reamur: reamur),
+            DropdownButton<String>(
+              items: listItem.map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              value: newValue,
+              onChanged: dropdownOnChanged,
+            ),
+            Result(
+              result: result,
+            ),
             Convert(konversiSuhu: konversiSuhu)
           ],
         )),
       ),
     );
+  }
+
+  void dropdownOnChanged(String? changeValue) {
+    setState(() {
+      newValue = changeValue!;
+    });
   }
 }
